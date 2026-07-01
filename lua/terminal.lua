@@ -4,7 +4,11 @@ vim.keymap.set('n', '<Leader>tl', ':botright vertical terminal<CR>', opts)
 -- Exit terminal mode easily
 vim.keymap.set('t', '<C-c>', [[<C-\><C-n>]], { silent = true })
 
-vim.opt.shell = "pwsh" -- Use PowerShell as default terminal
+if vim.fn.has("win32") == 1 then
+    vim.opt.shell = "pwsh" -- Use PowerShell as default terminal on windows
+else
+    vim.opt.shell = "bash" -- Use bash as default terminal on linux
+end
 
 -- Shortcut: Open terminal at the bottom
 vim.keymap.set('n', '<Leader>tb', function()
